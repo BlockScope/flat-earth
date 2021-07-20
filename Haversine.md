@@ -7,7 +7,7 @@ New York.
 .> cd .flight.Geodesy
 ```
 
-```unison
+```unison haversine.u
 london =
     (Rad lat) = Convert.degToRad (Deg 51.5007)
     (Rad lng) = Convert.degToRad (Deg -0.1246)

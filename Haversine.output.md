@@ -1,10 +1,16 @@
-# Hello
+# Haversines
+
+Let's find the distance between Big Ben in London and the Statue of Liberty in
+New York.
 
 ```ucm
 .> cd .flight.Geodesy
 
 ```
 ```unison
+---
+title: haversine.u
+---
 london =
     (Rad lat) = Convert.degToRad (Deg 51.5007)
     (Rad lng) = Convert.degToRad (Deg -0.1246)
@@ -16,12 +22,14 @@ newyork =
 > london
 > newyork
 > Haversine.distance london newyork
+
 ```
+
 
 ```ucm
 
-  I found and typechecked these definitions in scratch.u. If you
-  do an `add` or `update`, here's how your codebase would
+  I found and typechecked these definitions in haversine.u. If
+  you do an `add` or `update`, here's how your codebase would
   change:
   
     ⍟ These new definitions are ok to `add`:
