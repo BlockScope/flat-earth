@@ -5,10 +5,10 @@ From the table in Vincenty's paper showing the results of solutions.
 ```
   TABLE II - RESULTS OF SOLUTIONS
 
-Line       A                    B
-           Φ₁                   Φ₂
+Line       Φ₁                   Φ₂
            α₁                   L
            s                    α₂
+
 (a) 55° 45' 00.00000"   -33° 26' 00.00000"
     96  36  08.79960    108  13  00.00000"
       14110526.170m     137  52  22.01454
