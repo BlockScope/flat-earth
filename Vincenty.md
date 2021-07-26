@@ -54,8 +54,10 @@ xys =
 
             (x, y))
 
+es : [Ellipsoid]
 es = [bessel, hayford, hayford, hayford, hayford]
 
+ds : [Float]
 ds =
     [ 14110526.170
     ,  4085966.703
@@ -87,19 +89,23 @@ revAzimuths =
 inversePoints : ((DMS, DMS), (DMS, DMS)) -> InverseProblem LatLng
 inversePoints dmsLatLng =
     ((xLat, xLng), (yLat, yLng)) = dmsLatLng
+
     (Rad xLat') = Convert.degToRad (Deg (toDeg xLat))
     (Rad xLng') = Convert.degToRad (Deg (toDeg xLng))
     
     (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
     (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
+
     x = LatLng (Lat xLat') (Lng xLng')
     y = LatLng (Lat yLat') (Lng yLng')
+
     InverseProblem x y
 
 solvedDistances =
     f e dmsLatLng =
       (InverseProblem x y) = inversePoints dmsLatLng
       Vincenty.distance e x y
+      
     List.zipWith f es xys
 
 > somes solvedDistances
