@@ -39,3 +39,7 @@ unique type InverseSolution s α = InverseSolution s α (Optional α)
 The Haversine [transcript](Haversine.output.md) finds the distance from Big Ben,
 London to the Statue of Liberty, New York, with inputs in decimal degrees and
 outputs in metres.
+
+The Vincenty [transcript](Vincenty.output.md) finds distances and bearings
+between points from Vincenty's 1975 paper "Direct and Inverse Solutions of
+Geodesics on the Ellipsoid with Applications of Nested Equations".
