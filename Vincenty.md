@@ -95,8 +95,6 @@ inversePoints dmsLatLng =
     InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
 
 solvedDistances =
-    use Lat Lat
-    use Lng Lng
     f e dmsLatLng =
       (InverseProblem x y) = inversePoints dmsLatLng
       Vincenty.distance e x y

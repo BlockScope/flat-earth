@@ -99,8 +99,6 @@ inversePoints dmsLatLng =
     InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
 
 solvedDistances =
-    use Lat Lat
-    use Lng Lng
     f e dmsLatLng =
       (InverseProblem x y) = inversePoints dmsLatLng
       Vincenty.distance e x y
@@ -131,7 +129,7 @@ solvedDistances =
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    63 | > somes solvedDistances
+    61 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
