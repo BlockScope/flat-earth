@@ -84,17 +84,22 @@ revAzimuths =
         , (+174, +59, 59.88481)
         ]
 
+inversePoints : ((DMS, DMS), (DMS, DMS)) -> InverseProblem LatLng
+inversePoints dmsLatLng =
+    ((xLat, xLng), (yLat, yLng)) = dmsLatLng
+    (Rad xLat') = Convert.degToRad (Deg (toDeg xLat))
+    (Rad xLng') = Convert.degToRad (Deg (toDeg xLng))
+    
+    (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
+    (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
+    InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+
 indirectSolutionDistances =
     use Lat Lat
     use Lng Lng
-    f e ll =
-        ((xLat, xLng), (yLat, yLng)) = ll
-        (Rad xLat') = Convert.degToRad (Deg (toDeg xLat))
-        (Rad xLng') = Convert.degToRad (Deg (toDeg xLng))
-        
-        (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
-        (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
-        Vincenty.distance e (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.distance e x y
     List.zipWith f es xys
 
 > somes indirectSolutionDistances

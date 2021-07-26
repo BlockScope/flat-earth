@@ -88,17 +88,22 @@ revAzimuths =
         , (+174, +59, 59.88481)
         ]
 
+inversePoints : ((DMS, DMS), (DMS, DMS)) -> InverseProblem LatLng
+inversePoints dmsLatLng =
+    ((xLat, xLng), (yLat, yLng)) = dmsLatLng
+    (Rad xLat') = Convert.degToRad (Deg (toDeg xLat))
+    (Rad xLng') = Convert.degToRad (Deg (toDeg xLng))
+    
+    (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
+    (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
+    InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+
 indirectSolutionDistances =
     use Lat Lat
     use Lng Lng
-    f e ll =
-        ((xLat, xLng), (yLat, yLng)) = ll
-        (Rad xLat') = Convert.degToRad (Deg (toDeg xLat))
-        (Rad xLng') = Convert.degToRad (Deg (toDeg xLng))
-        
-        (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
-        (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
-        Vincenty.distance e (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.distance e x y
     List.zipWith f es xys
 
 > somes indirectSolutionDistances
@@ -118,13 +123,15 @@ indirectSolutionDistances =
       es                        : [Ellipsoid]
       fwdAzimuths               : [DMS]
       indirectSolutionDistances : [Optional Float]
+      inversePoints             : ((DMS, DMS), (DMS, DMS))
+                                  -> InverseProblem LatLng
       revAzimuths               : [DMS]
       xys                       : [((DMS, DMS), (DMS, DMS))]
   
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    58 | > somes indirectSolutionDistances
+    63 | > somes indirectSolutionDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
