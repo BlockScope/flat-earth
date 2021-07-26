@@ -1,6 +1,7 @@
 # Vincenty
 
-From the table in Vincenty's paper showing the results of solutions.
+Let's reproduce the results from this table in Vincenty's paper, finding
+solutions to the inverse problem.
 
 ```
   TABLE II - RESULTS OF SOLUTIONS
