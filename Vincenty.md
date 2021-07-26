@@ -40,6 +40,8 @@ Notation
 ```
 
 ```unison vincenty.u
+> bessel
+> hayford
 xys : [((DMS, DMS), (DMS, DMS))]
 xys =
     [ ((( +55, +45,  0.00000), (  +0,  +0,  0.0)), (( -33, +26,  0.00000), (+108, +13,  0.00000)))

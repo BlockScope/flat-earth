@@ -44,6 +44,8 @@ Notation
 ---
 title: vincenty.u
 ---
+> bessel
+> hayford
 xys : [((DMS, DMS), (DMS, DMS))]
 xys =
     [ ((( +55, +45,  0.00000), (  +0,  +0,  0.0)), (( -33, +26,  0.00000), (+108, +13,  0.00000)))
@@ -160,7 +162,15 @@ solvedAzimuthRev =
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    88 | > somes solvedDistances
+    1 | > bessel
+          ⧩
+          Ellipsoid (Radius 6377397.155) 299.1528128
+  
+    2 | > hayford
+          ⧩
+          Ellipsoid (Radius 6378388.0) 297.0
+  
+    90 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
@@ -168,7 +178,7 @@ solvedAzimuthRev =
              1.9877285829416234e7,
              1.9780006558786154e7 ]
   
-    89 | > List.map DMS.fromRad (somes solvedAzimuthFwd)
+    91 | > List.map DMS.fromRad (somes solvedAzimuthFwd)
            ⧩
            [ DMS (+96, +36, 8.79959547673593),
              DMS (+95, +27, 59.63088839623538),
@@ -176,7 +186,7 @@ solvedAzimuthRev =
              DMS (+88, +59, 59.99897064494121),
              DMS (+4, +59, 59.999954187251205) ]
   
-    90 | > List.map DMS.fromRad (somes solvedAzimuthRev)
+    92 | > List.map DMS.fromRad (somes solvedAzimuthRev)
            ⧩
            [ DMS (+137, +52, 22.01453494489442),
              DMS (+118, +5, 58.96160847082683),
