@@ -105,6 +105,7 @@ inversePoints dmsLatLng =
 
     InverseProblem x y
 
+solvedDistances : [Optional Float]
 solvedDistances =
     f e dmsLatLng =
       (InverseProblem x y) = inversePoints dmsLatLng
@@ -112,7 +113,27 @@ solvedDistances =
       
     List.zipWith f es xys
 
+solvedAzimuthFwd : [Optional Rad]
+solvedAzimuthFwd =
+    use Lat Lat
+    use Lng Lng
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.azimuthFwd e x y
+    List.zipWith f es xys
+
+solvedAzimuthRev : [Optional Rad]
+solvedAzimuthRev =
+    use Lat Lat
+    use Lng Lng
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.azimuthRev e x y
+    List.zipWith f es xys
+
 > somes solvedDistances
+> List.map DMS.fromRad (somes solvedAzimuthFwd)
+> List.map DMS.fromRad (somes solvedAzimuthRev)
 
 ```
 
@@ -125,24 +146,42 @@ solvedDistances =
   
     ⍟ These new definitions are ok to `add`:
     
-      ds              : [Float]
-      es              : [Ellipsoid]
-      fwdAzimuths     : [DMS]
-      inversePoints   : ((DMS, DMS), (DMS, DMS))
-                        -> InverseProblem LatLng
-      revAzimuths     : [DMS]
-      solvedDistances : [Optional Float]
-      xys             : [((DMS, DMS), (DMS, DMS))]
+      ds               : [Float]
+      es               : [Ellipsoid]
+      fwdAzimuths      : [DMS]
+      inversePoints    : ((DMS, DMS), (DMS, DMS))
+                         -> InverseProblem LatLng
+      revAzimuths      : [DMS]
+      solvedAzimuthFwd : [Optional Rad]
+      solvedAzimuthRev : [Optional Rad]
+      solvedDistances  : [Optional Float]
+      xys              : [((DMS, DMS), (DMS, DMS))]
   
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    69 | > somes solvedDistances
+    88 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
              8084823.83829748,
              1.9877285829416234e7,
              1.9780006558786154e7 ]
+  
+    89 | > List.map DMS.fromRad (somes solvedAzimuthFwd)
+           ⧩
+           [ DMS (+96, +36, 0.0),
+             DMS (+95, +28, 0.0),
+             DMS (+15, +44, 0.0),
+             DMS (+88, +60, 0.0),
+             DMS (+4, +60, 0.0) ]
+  
+    90 | > List.map DMS.fromRad (somes solvedAzimuthRev)
+           ⧩
+           [ DMS (+137, +52, 0.0),
+             DMS (+118, +6, 0.0),
+             DMS (+144, +56, 0.0),
+             DMS (+91, +0, 0.0),
+             DMS (+174, +60, 0.0) ]
 
 ```

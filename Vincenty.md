@@ -101,6 +101,7 @@ inversePoints dmsLatLng =
 
     InverseProblem x y
 
+solvedDistances : [Optional Float]
 solvedDistances =
     f e dmsLatLng =
       (InverseProblem x y) = inversePoints dmsLatLng
@@ -108,5 +109,25 @@ solvedDistances =
       
     List.zipWith f es xys
 
+solvedAzimuthFwd : [Optional Rad]
+solvedAzimuthFwd =
+    use Lat Lat
+    use Lng Lng
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.azimuthFwd e x y
+    List.zipWith f es xys
+
+solvedAzimuthRev : [Optional Rad]
+solvedAzimuthRev =
+    use Lat Lat
+    use Lng Lng
+    f e dmsLatLng =
+      (InverseProblem x y) = inversePoints dmsLatLng
+      Vincenty.azimuthRev e x y
+    List.zipWith f es xys
+
 > somes solvedDistances
+> List.map DMS.fromRad (somes solvedAzimuthFwd)
+> List.map DMS.fromRad (somes solvedAzimuthRev)
 ```
