@@ -92,7 +92,9 @@ inversePoints dmsLatLng =
     
     (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
     (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
-    InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+    x = LatLng (Lat xLat') (Lng xLng')
+    y = LatLng (Lat yLat') (Lng yLng')
+    InverseProblem x y
 
 solvedDistances =
     f e dmsLatLng =

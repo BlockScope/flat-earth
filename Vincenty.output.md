@@ -96,7 +96,9 @@ inversePoints dmsLatLng =
     
     (Rad yLat') = Convert.degToRad (Deg (toDeg yLat))
     (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
-    InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
+    x = LatLng (Lat xLat') (Lng xLng')
+    y = LatLng (Lat yLat') (Lng yLng')
+    InverseProblem x y
 
 solvedDistances =
     f e dmsLatLng =
@@ -129,7 +131,7 @@ solvedDistances =
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    61 | > somes solvedDistances
+    63 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
