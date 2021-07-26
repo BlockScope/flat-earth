@@ -63,35 +63,6 @@ xys =
 es : [Ellipsoid]
 es = [bessel, hayford, hayford, hayford, hayford]
 
-ds : [Float]
-ds =
-    [ 14110526.170
-    ,  4085966.703
-    ,  8084823.839
-    , 19960000.000
-    , 19780006.5584
-    ]
-
-fwdAzimuths : [DMS]
-fwdAzimuths =
-    List.map DMS
-        [ ( +96, +36,  8.79960)
-        , ( +95, +27, 59.63089)
-        , ( +15, +44, 23.74850)
-        , ( +89,  +0,  0.00000)
-        , (  +4, +59, 59.99995)
-        ]
-
-revAzimuths : [DMS]
-revAzimuths =
-    List.map DMS
-        [ (+137, +52, 22.01454)
-        , (+118,  +5, 58.96161)
-        , (+144, +55, 39.92147)
-        , ( +91,  +0,  6.11733)
-        , (+174, +59, 59.88481)
-        ]
-
 inversePoints : ((DMS, DMS), (DMS, DMS)) -> InverseProblem LatLng
 inversePoints dmsLatLng =
     ((xLat, xLng), (yLat, yLng)) = dmsLatLng

@@ -90,35 +90,6 @@ xys =
 es : [Ellipsoid]
 es = [bessel, hayford, hayford, hayford, hayford]
 
-ds : [Float]
-ds =
-    [ 14110526.170
-    ,  4085966.703
-    ,  8084823.839
-    , 19960000.000
-    , 19780006.5584
-    ]
-
-fwdAzimuths : [DMS]
-fwdAzimuths =
-    List.map DMS
-        [ ( +96, +36,  8.79960)
-        , ( +95, +27, 59.63089)
-        , ( +15, +44, 23.74850)
-        , ( +89,  +0,  0.00000)
-        , (  +4, +59, 59.99995)
-        ]
-
-revAzimuths : [DMS]
-revAzimuths =
-    List.map DMS
-        [ (+137, +52, 22.01454)
-        , (+118,  +5, 58.96161)
-        , (+144, +55, 39.92147)
-        , ( +91,  +0,  6.11733)
-        , (+174, +59, 59.88481)
-        ]
-
 inversePoints : ((DMS, DMS), (DMS, DMS)) -> InverseProblem LatLng
 inversePoints dmsLatLng =
     ((xLat, xLng), (yLat, yLng)) = dmsLatLng
@@ -175,12 +146,9 @@ solvedAzimuthRev =
   
     ⍟ These new definitions are ok to `add`:
     
-      ds               : [Float]
       es               : [Ellipsoid]
-      fwdAzimuths      : [DMS]
       inversePoints    : ((DMS, DMS), (DMS, DMS))
                          -> InverseProblem LatLng
-      revAzimuths      : [DMS]
       solvedAzimuthFwd : [Optional Rad]
       solvedAzimuthRev : [Optional Rad]
       solvedDistances  : [Optional Float]
@@ -189,7 +157,7 @@ solvedAzimuthRev =
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    88 | > somes solvedDistances
+    59 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
@@ -197,7 +165,7 @@ solvedAzimuthRev =
              1.9877285829416234e7,
              1.9780006558786154e7 ]
   
-    89 | > List.map DMS.fromRad (somes solvedAzimuthFwd)
+    60 | > List.map DMS.fromRad (somes solvedAzimuthFwd)
            ⧩
            [ DMS (+96, +36, 8.79959547673593),
              DMS (+95, +27, 59.63088839623538),
@@ -205,7 +173,7 @@ solvedAzimuthRev =
              DMS (+88, +59, 59.99897064494121),
              DMS (+4, +59, 59.999954187251205) ]
   
-    90 | > List.map DMS.fromRad (somes solvedAzimuthRev)
+    61 | > List.map DMS.fromRad (somes solvedAzimuthRev)
            ⧩
            [ DMS (+137, +52, 22.01453494489442),
              DMS (+118, +5, 58.96160847082683),
