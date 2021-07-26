@@ -94,7 +94,7 @@ inversePoints dmsLatLng =
     (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
     InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
 
-indirectSolutionDistances =
+solvedDistances =
     use Lat Lat
     use Lng Lng
     f e dmsLatLng =
@@ -102,5 +102,5 @@ indirectSolutionDistances =
       Vincenty.distance e x y
     List.zipWith f es xys
 
-> somes indirectSolutionDistances
+> somes solvedDistances
 ```

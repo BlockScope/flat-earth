@@ -98,7 +98,7 @@ inversePoints dmsLatLng =
     (Rad yLng') = Convert.degToRad (Deg (toDeg yLng))
     InverseProblem (LatLng (Lat xLat') (Lng xLng')) (LatLng (Lat yLat') (Lng yLng'))
 
-indirectSolutionDistances =
+solvedDistances =
     use Lat Lat
     use Lng Lng
     f e dmsLatLng =
@@ -106,7 +106,7 @@ indirectSolutionDistances =
       Vincenty.distance e x y
     List.zipWith f es xys
 
-> somes indirectSolutionDistances
+> somes solvedDistances
 
 ```
 
@@ -119,19 +119,19 @@ indirectSolutionDistances =
   
     ⍟ These new definitions are ok to `add`:
     
-      ds                        : [Float]
-      es                        : [Ellipsoid]
-      fwdAzimuths               : [DMS]
-      indirectSolutionDistances : [Optional Float]
-      inversePoints             : ((DMS, DMS), (DMS, DMS))
-                                  -> InverseProblem LatLng
-      revAzimuths               : [DMS]
-      xys                       : [((DMS, DMS), (DMS, DMS))]
+      ds              : [Float]
+      es              : [Ellipsoid]
+      fwdAzimuths     : [DMS]
+      inversePoints   : ((DMS, DMS), (DMS, DMS))
+                        -> InverseProblem LatLng
+      revAzimuths     : [DMS]
+      solvedDistances : [Optional Float]
+      xys             : [((DMS, DMS), (DMS, DMS))]
   
   Now evaluating any watch expressions (lines starting with
   `>`)... Ctrl+C cancels.
 
-    63 | > somes indirectSolutionDistances
+    63 | > somes solvedDistances
            ⧩
            [ 1.411052616959625e7,
              4085966.7026130124,
